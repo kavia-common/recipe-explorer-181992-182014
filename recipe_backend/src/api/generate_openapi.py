@@ -3,6 +3,13 @@ import os
 
 from src.api.main import app
 
+"""
+Utility script to regenerate the OpenAPI schema based on the current FastAPI app.
+
+This script writes the schema to interfaces/openapi.json which is used by other
+containers as the interface contract.
+"""
+
 # Get the OpenAPI schema
 openapi_schema = app.openapi()
 

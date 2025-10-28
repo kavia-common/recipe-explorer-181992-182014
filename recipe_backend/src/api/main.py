@@ -6,6 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from src.core.config import get_settings
 from src.db.repository import InMemoryRepository, ExternalRepository, Repository
 from src.db.clients.recipe_database_client import RecipeDatabaseClient
+from src.api.routers.recipes import router as recipes_router
 
 
 settings = get_settings()
@@ -70,3 +71,7 @@ def get_repository() -> Generator[Repository, None, None]:
 def health_check():
     """Health check endpoint returning service status information."""
     return {"message": "Healthy", "provider": settings.RECIPE_DB_PROVIDER}
+
+
+# Register routers
+app.include_router(recipes_router)
